@@ -69,8 +69,50 @@ async function RoleAssistant() {
   });
   console.log(response.choices[0].message);
 }
+
+//make a request to the OpenAI API with a max token limit of 10
+async function Token() {
+  const response = await openai.chat.completions.create({
+    model: "gpt-4o",
+    messages: [{ role: "user", content: "say something cool in 200 words or less" }],
+    max_tokens: 10,
+  });
+  console.log(response.choices[0].message);
+  };
+
+  //Top P
+  //Temperature
+
+//make a request to the OpenAI API with n=2
+async function MultipleResponses() {
+  const response = await openai.chat.completions.create({
+    model: "gpt-4o",
+    messages: [{ role: "user", content: "say something cool" }],
+    n: 2
+  });
+  console.log(response.choices[0].message.content);
+  console.log(response.choices[1].message.content);
+  };
+
+
+//make a request to the OpenAI API with frequency_penalty=1.5 seed=5555
+async function FrequencyPenalty() {
+  const response = await openai.chat.completions.create({
+    model: "gpt-4o",
+    messages: [{ role: "user", content: "say something cool" }],
+   frequency_penalty: 1.5,
+   seed:5555
+  });
+  console.log(response.choices[0].message.content);
+  };
+
+
+
 // main()
 // encodePrompt()
 // compareRole();
 // AnswerInJson();
- RoleAssistant();
+//  RoleAssistant();
+//  Token();
+// MultipleResponses();
+// FrequencyPenalty();
